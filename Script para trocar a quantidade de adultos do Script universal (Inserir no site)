@@ -1,0 +1,73 @@
+<script> 
+
+        document.addEventListener('DOMContentLoaded', function() { 
+
+            // Função para substituir a seleção no select 
+
+            function substituirSelecao() { 
+
+                var selectElement = document.getElementById('HSystemSearchBoxInline_Form_nAdults'); 
+
+                if (selectElement) { 
+
+                    // Verifica se o valor selecionado é "1" 
+
+                    if (selectElement.value === '1') { 
+
+                        selectElement.value = '2'; // Substitui o valor selecionado para "2" 
+
+                        // Dispara o evento change para garantir que qualquer listener associado ao select também seja acionado 
+
+                        var event = new Event('change'); 
+
+                        selectElement.dispatchEvent(event); 
+
+                    } 
+
+                } 
+
+            } 
+
+  
+
+            // Cria um observador de mutações para monitorar mudanças no DOM 
+
+            var observer = new MutationObserver(function(mutations) { 
+
+                mutations.forEach(function(mutation) { 
+
+                    // Verifica se a modificação afetou o select 
+
+                    if (mutation.addedNodes.length > 0) { 
+
+                        for (var i = 0; i < mutation.addedNodes.length; i++) { 
+
+                            if (mutation.addedNodes[i].id === 'HSystemSearchBoxInline_Form_nAdults') { 
+
+                                substituirSelecao(); 
+
+                            } 
+
+                        } 
+
+                    } 
+
+                }); 
+
+            }); 
+
+  
+
+            // Começa a observar mudanças no corpo do documento 
+
+            observer.observe(document.body, { childList: true, subtree: true }); 
+
+             
+
+            // Também tenta substituir a seleção imediatamente, caso o select já esteja no DOM 
+
+            substituirSelecao(); 
+
+        }); 
+
+    </script> 
