@@ -1,0 +1,13 @@
+<style> 
+
+/* Estilo para ocultar checkbox de nota fiscal */ 
+
+.panel-body label[for="chckBox_InsertInvoiceHolderData"], 
+
+.form-check { 
+
+    display: none; 
+
+} 
+
+</style> 
