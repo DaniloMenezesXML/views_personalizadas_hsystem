@@ -1,0 +1,73 @@
+<!-- DIÁRIA MÍNIMA 2 DIAS --> 
+
+<script> 
+
+function getToday(){ 
+     const today = new Date(); 
+
+    const day = String(today.getDate()).padStart(2, '0'); // O método padStart garante que tenhamos sempre 2 dígitos no dia 
+     const month = String(today.getMonth() + 1).padStart(2, '0'); 
+     const year = today.getFullYear(); 
+    
+     return `${day}-${month}-${year}`; 
+
+} 
+  
+function getTwoDaysLater(){ 
+     const today = new Date(); 
+
+  
+
+    const twoDaysLater = new Date(today); 
+     twoDaysLater.setDate(today.getDate() + 2); 
+  
+
+    const day = String(twoDaysLater.getDate()).padStart(2, '0'); 
+     const mounth = String(twoDaysLater.getMonth() + 1).padStart(2, '0'); 
+     const year = twoDaysLater.getFullYear(); 
+
+  
+    return `${day}-${mounth}-${year}`; 
+     
+ } 
+
+  
+
+function updateUrlParams(params) { 
+   const url = new URL(window.location.href); 
+ 
+   Object.keys(params).forEach((key) => { 
+     url.searchParams.set(key, params[key]); 
+   }); 
+ 
+   window.location.href = url.toString(); 
+   console.log(url) 
+ } 
+
+  
+
+function checkURL() { 
+   const urlParams = new URLSearchParams(window.location.search); 
+   const checkin = urlParams.get('checkin'); 
+   const checkout = urlParams.get('checkout'); 
+   const bookingId = urlParams.get('bookingId'); 
+ 
+   if (!checkin && !checkout && !bookingId) { 
+     const today = getToday() 
+     const twoDaysLater = getTwoDaysLater() 
+
+  
+
+     
+     updateUrlParams({ 
+       checkin: today, 
+       checkout: twoDaysLater 
+     }); 
+     console.log(today,twoDaysLater) 
+   } 
+ } 
+
+  
+
+window.addEventListener('DOMContentLoaded', checkURL); 
+</script> 
