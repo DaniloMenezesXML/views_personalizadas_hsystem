@@ -1,0 +1,12 @@
+<script>
+ window.addEventListener('load', function() {
+    // Seleciona todos os elementos com a classe 'adult-container'
+    var adultContainers = document.querySelectorAll('#adult-select');
+    
+    adultContainers.forEach(function(container) {
+        // Altera o valor para 1 em todos os campos encontrados
+        container.value = 1;
+    });
+});
+
+</script>
