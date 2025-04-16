@@ -1,0 +1,50 @@
+<script>
+  // Cria os elementos
+  const popupOverlay = document.createElement('div');
+  const popupBox = document.createElement('div');
+  const popupImage = document.createElement('img');
+  const closeButton = document.createElement('span');
+ 
+  // Estilos do overlay
+  popupOverlay.style.position = 'fixed';
+  popupOverlay.style.top = '0';
+  popupOverlay.style.left = '0';
+  popupOverlay.style.width = '100vw';
+  popupOverlay.style.height = '100vh';
+  popupOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+  popupOverlay.style.display = 'flex';
+  popupOverlay.style.justifyContent = 'center';
+  popupOverlay.style.alignItems = 'center';
+  popupOverlay.style.zIndex = '9999';
+ 
+  // Estilos do popup
+  popupBox.style.position = 'relative';
+  popupBox.style.backgroundColor = '#fff';
+  popupBox.style.padding = '20px';
+  popupBox.style.borderRadius = '8px';
+  popupBox.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.3)';
+  popupBox.style.maxWidth = '90%';
+  popupBox.style.maxHeight = '90%';
+  popupBox.style.overflow = 'auto';
+  popupBox.style.textAlign = 'center';
+ 
+  // Estilos da imagem
+  popupImage.src = 'https://hweb-upload.s3-sa-east-1.amazonaws.com/5b3515b9c19a3b5af02d11e4/c3bf5441a5bf4481a22122701f86a7b7.jpg'; // <- troque pela URL da sua imagem
+  popupImage.style.maxWidth = '100%';
+  popupImage.style.borderRadius = '4px';
+ 
+  // Botão de fechar
+  closeButton.innerHTML = '&times;';
+  closeButton.style.position = 'absolute';
+  closeButton.style.top = '10px';
+  closeButton.style.right = '15px';
+  closeButton.style.fontSize = '24px';
+  closeButton.style.cursor = 'pointer';
+  closeButton.onclick = () => document.body.removeChild(popupOverlay);
+ 
+  // Monta tudo
+  popupBox.appendChild(closeButton);
+  popupBox.appendChild(popupImage);
+  popupOverlay.appendChild(popupBox);
+  document.body.appendChild(popupOverlay);
+</script>
