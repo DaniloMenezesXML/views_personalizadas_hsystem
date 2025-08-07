@@ -1,12 +1,32 @@
 <script>
- window.addEventListener('load', function() {
-    // Seleciona todos os elementos com a classe 'adult-container'
-    var adultContainers = document.querySelectorAll('#adult-select');
-    
-    adultContainers.forEach(function(container) {
-        // Altera o valor para 1 em todos os campos encontrados
-        container.value = 1;
-    });
-});
+window.addEventListener('load', function () {
+    function setAdultsAndSearch() {
+        // Tenta encontrar o campo de adultos por ID ou name
+        var adultSelect = document.querySelector('#adult-select') || 
+                          document.querySelector('[name*="adult"]');
 
+        if (adultSelect) {
+            adultSelect.value = 1;
+
+            // Dispara eventos para atualizar valores internos
+            adultSelect.dispatchEvent(new Event('change', { bubbles: true }));
+            adultSelect.dispatchEvent(new Event('input', { bubbles: true }));
+
+            // Aguarda a atualização do DOM antes de clicar no botão
+            setTimeout(function () {
+                // Procura botões com texto "Pesquisar" (independente do casing)
+                const buttons = document.querySelectorAll('button, input[type="submit"]');
+                buttons.forEach(function (btn) {
+                    const text = (btn.textContent || btn.value || '').trim().toLowerCase();
+                    if (text.includes('pesquisar')) {
+                        btn.click(); // Simula clique
+                    }
+                });
+            }, 600); // tempo ligeiramente maior para mobile
+        }
+    }
+
+    // Aguarda o DOM estar completamente pronto (inclusive em mobile)
+    setTimeout(setAdultsAndSearch, 300);
+});
 </script>
